@@ -1,0 +1,1 @@
+kubeadm join 192.168.191.130:6443 --token y25wiy.in5g44rxr8hi8d7p --discovery-token-ca-cert-hash sha256:89bb36fd15d4876739d7a7a99f29dbbadf74c0f874debe22c5d940a080568f91 

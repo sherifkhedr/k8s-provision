@@ -1,0 +1,16 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: create the 'sherif' user
+      user: name=sherif append=yes state=present createhome=yes shell=/bin/bash
+
+    - name: allow 'sherif' to have passwordless sudo
+      lineinfile:
+       dest: /etc/sudoers
+       line: 'sherif ALL=(ALL) NOPASSWD: ALL'
+       validate: 'visudo -cf %s'
+ 
+    - name: set up authorized keys for the sherif user
+      authorized_key: user=sherif key="{{item}}"
+      with_file:
+      - ~/.ssh/id_rsa.pub
